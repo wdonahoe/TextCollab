@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace TextCollab.Models {
 
     public class Text {
@@ -5,10 +8,11 @@ namespace TextCollab.Models {
         public int id { get; set; }
         public string text { get; set; }
 
-        public Text(int id, string text) {
-            this.id = id;
-            this.text = text;
-        }
+        public DateTime dateCreated { get; set; }
+
+        public DateTime dateModified { get; set; }
+
+        public virtual ICollection<TextSlice> TextSlices { get; set; }
 
     }
 
