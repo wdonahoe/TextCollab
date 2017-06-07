@@ -21,15 +21,18 @@ namespace TextCollab {
             Configuration = builder.Build();
         }
 
-        public void ConfigureServices(IServiceCollection services, IOptions<Settings> settings) {
+        public void ConfigureServices(IServiceCollection services) {
             services.AddMvc();
 
             services.AddOptions();
             services.Configure<Settings>(Configuration.GetSection("Settings"));
 
             services.AddEntityFrameworkNpgsql()
-                    .AddDbContext<TextContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=TextCollab;Username=text_collab_init;Password=??00+triangle+AHEAD+someone+80??"));
+                    .AddDbContext<TextContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=TextCollab;Username=text_collab_init;Password=??00+triangle+AHEAD+someone+80??"))
+                    .AddScoped<TextContext>();
             //services.AddSingleton<IConfigureOptions<IServiceCollection>, DBConfiguration>();
+
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {

@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TextCollab.Models {
 
-    public class Text {
+    public class Text : BaseEntity {
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        public string text { get; set; }
-
-        public DateTime dateCreated { get; set; }
-
-        public DateTime dateModified { get; set; }
+        public string textBody { get; set; }
 
         public virtual ICollection<TextSlice> TextSlices { get; set; }
 
